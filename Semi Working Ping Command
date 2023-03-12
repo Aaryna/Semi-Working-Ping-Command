@@ -1,0 +1,30 @@
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class PingPlugin extends JavaPlugin {
+
+@OverRide
+public void onEnable() {
+getLogger().info("PingPlugin enabled");
+}
+
+@OverRide
+public void onDisable() {
+getLogger().info("PingPlugin disabled");
+}
+
+@OverRide
+public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+if (cmd.getName().equalsIgnoreCase("ping") && sender instanceof Player) {
+Player player = (Player) sender;
+int ping = player.spigot().getPing();
+player.sendMessage("Your ping is " + ping + "ms");
+return true;
+}
+return false;
+}
+}
+
